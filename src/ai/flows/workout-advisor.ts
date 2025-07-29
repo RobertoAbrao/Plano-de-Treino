@@ -17,6 +17,7 @@ import { exerciseList } from '@/lib/exercises';
 const WorkoutAdvisorInputSchema = z.object({
   fitnessGoal: z.string().describe('The fitness goal of the user.'),
   fitnessLevel: z.enum(["iniciante", "intermediario", "avancado"]).describe("The fitness level of the user (beginner, intermediate, or advanced)."),
+  gender: z.enum(["homem", "mulher"]).describe("The gender of the user (male or female)."),
 });
 export type WorkoutAdvisorInput = z.infer<typeof WorkoutAdvisorInputSchema>;
 
@@ -50,15 +51,16 @@ const prompt = ai.definePrompt({
   name: 'workoutAdvisorPrompt',
   input: {schema: WorkoutAdvisorInputSchema},
   output: {schema: WorkoutAdvisorOutputSchema},
-  prompt: `You are an expert personal trainer. Your task is to create a complete and balanced 5-day workout plan (Monday to Friday) for a user based on their stated fitness goal and experience level.
+  prompt: `You are an expert personal trainer. Your task is to create a complete and balanced 5-day workout plan (Monday to Friday) for a user based on their stated fitness goal, experience level and gender.
 
 **User Information:**
 *   **Fitness Goal:** {{{fitnessGoal}}}
 *   **Fitness Level:** {{{fitnessLevel}}}
+*   **Gender:** {{{gender}}}
 
 **Instructions:**
 
-1.  **Analyze Goal and Level:** Carefully consider the user's fitness goal and level. A plan for a "beginner" aiming for "weight loss" should be fundamentally different from one for an "advanced" user aiming for "muscle gain".
+1.  **Analyze Goal, Level and Gender:** Carefully consider all user's information. A plan for a "beginner" aiming for "weight loss" should be fundamentally different from one for an "advanced" user aiming for "muscle gain". Adapt the exercise selection and volume based on gender, if applicable (e.g., some women prefer more focus on lower body, while some men prefer more focus on upper body, but this is not a strict rule).
     *   **Beginner (Iniciante):** Focus on fundamental compound movements, machine-based exercises for safety, and full-body or upper/lower splits. Keep volume moderate.
     *   **Intermediate (Intermediário):** Introduce more complex free-weight exercises, increase volume and intensity, and use more specific splits (e.g., Push/Pull/Legs).
     *   **Advanced (Avançado):** Incorporate advanced techniques (e.g., supersets, drop sets), higher volume, and exercises that require more skill and stability.

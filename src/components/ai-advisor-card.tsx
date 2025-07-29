@@ -21,6 +21,9 @@ const advisorSchema = z.object({
   fitnessLevel: z.enum(["iniciante", "intermediario", "avancado"], {
     required_error: "Você precisa selecionar um nível.",
   }),
+  gender: z.enum(["homem", "mulher"], {
+    required_error: "Você precisa selecionar um gênero.",
+  }),
 });
 
 type AdvisorFormData = z.infer<typeof advisorSchema>;
@@ -47,6 +50,7 @@ export function AiAdvisorCard({ onPlanGenerated }: AiAdvisorCardProps) {
       const result = await getWorkoutAdvice({
         fitnessGoal: data.fitnessGoal,
         fitnessLevel: data.fitnessLevel,
+        gender: data.gender,
       });
       onPlanGenerated(result);
       form.reset();
@@ -85,48 +89,84 @@ export function AiAdvisorCard({ onPlanGenerated }: AiAdvisorCardProps) {
                 </FormItem>
               )}
             />
-             <FormField
-              control={form.control}
-              name="fitnessLevel"
-              render={({ field }) => (
-                <FormItem className="space-y-3">
-                  <FormLabel>Qual seu nível de experiência?</FormLabel>
-                  <FormControl>
-                    <RadioGroup
-                      onValueChange={field.onChange}
-                      defaultValue={field.value}
-                      className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4"
-                    >
-                      <FormItem className="flex items-center space-x-3 space-y-0">
-                        <FormControl>
-                          <RadioGroupItem value="iniciante" />
-                        </FormControl>
-                        <FormLabel className="font-normal">
-                          Iniciante
-                        </FormLabel>
-                      </FormItem>
-                      <FormItem className="flex items-center space-x-3 space-y-0">
-                        <FormControl>
-                          <RadioGroupItem value="intermediario" />
-                        </FormControl>
-                        <FormLabel className="font-normal">
-                          Intermediário
-                        </FormLabel>
-                      </FormItem>
-                      <FormItem className="flex items-center space-x-3 space-y-0">
-                        <FormControl>
-                          <RadioGroupItem value="avancado" />
-                        </FormControl>
-                        <FormLabel className="font-normal">
-                          Avançado
-                        </FormLabel>
-                      </FormItem>
-                    </RadioGroup>
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <FormField
+                control={form.control}
+                name="fitnessLevel"
+                render={({ field }) => (
+                  <FormItem className="space-y-3">
+                    <FormLabel>Qual seu nível de experiência?</FormLabel>
+                    <FormControl>
+                      <RadioGroup
+                        onValueChange={field.onChange}
+                        defaultValue={field.value}
+                        className="flex flex-row space-y-0 space-x-4"
+                      >
+                        <FormItem className="flex items-center space-x-3 space-y-0">
+                          <FormControl>
+                            <RadioGroupItem value="iniciante" />
+                          </FormControl>
+                          <FormLabel className="font-normal">
+                            Iniciante
+                          </FormLabel>
+                        </FormItem>
+                        <FormItem className="flex items-center space-x-3 space-y-0">
+                          <FormControl>
+                            <RadioGroupItem value="intermediario" />
+                          </FormControl>
+                          <FormLabel className="font-normal">
+                            Intermediário
+                          </FormLabel>
+                        </FormItem>
+                        <FormItem className="flex items-center space-x-3 space-y-0">
+                          <FormControl>
+                            <RadioGroupItem value="avancado" />
+                          </FormControl>
+                          <FormLabel className="font-normal">
+                            Avançado
+                          </FormLabel>
+                        </FormItem>
+                      </RadioGroup>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="gender"
+                render={({ field }) => (
+                  <FormItem className="space-y-3">
+                    <FormLabel>Qual seu gênero?</FormLabel>
+                    <FormControl>
+                      <RadioGroup
+                        onValueChange={field.onChange}
+                        defaultValue={field.value}
+                        className="flex flex-row space-y-0 space-x-4"
+                      >
+                        <FormItem className="flex items-center space-x-3 space-y-0">
+                          <FormControl>
+                            <RadioGroupItem value="homem" />
+                          </FormControl>
+                          <FormLabel className="font-normal">
+                            Homem
+                          </FormLabel>
+                        </FormItem>
+                        <FormItem className="flex items-center space-x-3 space-y-0">
+                          <FormControl>
+                            <RadioGroupItem value="mulher" />
+                          </FormControl>
+                          <FormLabel className="font-normal">
+                            Mulher
+                          </FormLabel>
+                        </FormItem>
+                      </RadioGroup>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
             <Button type="submit" disabled={isLoading} className="w-full sm:w-auto">
               {isLoading ? (
                 <>
