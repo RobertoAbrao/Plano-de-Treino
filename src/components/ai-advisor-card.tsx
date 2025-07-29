@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from "react";
@@ -13,9 +14,13 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
 const advisorSchema = z.object({
   fitnessGoal: z.string().min(3, { message: "Por favor, descreva seu objetivo." }),
+  fitnessLevel: z.enum(["iniciante", "intermediario", "avancado"], {
+    required_error: "Você precisa selecionar um nível.",
+  }),
 });
 
 type AdvisorFormData = z.infer<typeof advisorSchema>;
@@ -41,6 +46,7 @@ export function AiAdvisorCard({ onPlanGenerated }: AiAdvisorCardProps) {
     try {
       const result = await getWorkoutAdvice({
         fitnessGoal: data.fitnessGoal,
+        fitnessLevel: data.fitnessLevel,
       });
       onPlanGenerated(result);
       form.reset();
@@ -60,12 +66,12 @@ export function AiAdvisorCard({ onPlanGenerated }: AiAdvisorCardProps) {
           Gerador de Treino com IA
         </CardTitle>
         <CardDescription>
-          Não sabe por onde começar? Descreva seu objetivo principal e a nossa IA criará um plano de treino de 5 dias, completo e personalizado para você.
+          Não sabe por onde começar? Descreva seu objetivo, selecione seu nível e a nossa IA criará um plano de treino de 5 dias, completo e personalizado para você.
         </CardDescription>
       </CardHeader>
       <CardContent>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-4">
+          <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-6">
             <FormField
               control={form.control}
               name="fitnessGoal"
@@ -74,6 +80,48 @@ export function AiAdvisorCard({ onPlanGenerated }: AiAdvisorCardProps) {
                   <FormLabel>Qual seu objetivo principal?</FormLabel>
                   <FormControl>
                     <Input placeholder="Ex: Perder gordura, ganhar massa muscular" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+             <FormField
+              control={form.control}
+              name="fitnessLevel"
+              render={({ field }) => (
+                <FormItem className="space-y-3">
+                  <FormLabel>Qual seu nível de experiência?</FormLabel>
+                  <FormControl>
+                    <RadioGroup
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                      className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4"
+                    >
+                      <FormItem className="flex items-center space-x-3 space-y-0">
+                        <FormControl>
+                          <RadioGroupItem value="iniciante" />
+                        </FormControl>
+                        <FormLabel className="font-normal">
+                          Iniciante
+                        </FormLabel>
+                      </FormItem>
+                      <FormItem className="flex items-center space-x-3 space-y-0">
+                        <FormControl>
+                          <RadioGroupItem value="intermediario" />
+                        </FormControl>
+                        <FormLabel className="font-normal">
+                          Intermediário
+                        </FormLabel>
+                      </FormItem>
+                      <FormItem className="flex items-center space-x-3 space-y-0">
+                        <FormControl>
+                          <RadioGroupItem value="avancado" />
+                        </FormControl>
+                        <FormLabel className="font-normal">
+                          Avançado
+                        </FormLabel>
+                      </FormItem>
+                    </RadioGroup>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
