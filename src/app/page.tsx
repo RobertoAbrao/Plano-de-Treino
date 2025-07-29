@@ -1,9 +1,6 @@
-import WorkoutDashboard from '@/components/workout-dashboard';
+
+import { TrainingPlan } from "@/components/training-plan";
 
 export default function Home() {
-  return (
-    <div className="bg-muted/40">
-        <WorkoutDashboard />
-    </div>
-  );
+  return <TrainingPlan />;
 }

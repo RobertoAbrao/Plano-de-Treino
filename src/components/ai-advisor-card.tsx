@@ -6,8 +6,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Wand2, LoaderCircle } from "lucide-react";
-import type { WorkoutPlan } from "@/types/workout";
-import { getWorkoutAdvice } from "@/ai/flows/workout-advisor";
+import { useWorkoutPlan } from "@/contexts/workout-plan-context";
 
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
@@ -29,12 +28,12 @@ const advisorSchema = z.object({
 type AdvisorFormData = z.infer<typeof advisorSchema>;
 
 interface AiAdvisorCardProps {
-  onPlanGenerated: (newPlan: WorkoutPlan) => void;
+  onPlanGenerated: (newPlan: any) => void;
 }
 
 export function AiAdvisorCard({ onPlanGenerated }: AiAdvisorCardProps) {
-  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const { generatePlan, isGenerating } = useWorkoutPlan();
 
   const form = useForm<AdvisorFormData>({
     resolver: zodResolver(advisorSchema),
@@ -44,21 +43,14 @@ export function AiAdvisorCard({ onPlanGenerated }: AiAdvisorCardProps) {
   });
 
   const handleSubmit = async (data: AdvisorFormData) => {
-    setIsLoading(true);
     setError(null);
     try {
-      const result = await getWorkoutAdvice({
-        fitnessGoal: data.fitnessGoal,
-        fitnessLevel: data.fitnessLevel,
-        gender: data.gender,
-      });
+      const result = await generatePlan(data.fitnessGoal, data.fitnessLevel, data.gender);
       onPlanGenerated(result);
       form.reset();
     } catch (e) {
       setError("Não foi possível gerar o treino. Tente novamente.");
       console.error(e);
-    } finally {
-      setIsLoading(false);
     }
   };
 
@@ -167,8 +159,8 @@ export function AiAdvisorCard({ onPlanGenerated }: AiAdvisorCardProps) {
                 )}
               />
             </div>
-            <Button type="submit" disabled={isLoading} className="w-full sm:w-auto">
-              {isLoading ? (
+            <Button type="submit" disabled={isGenerating} className="w-full sm:w-auto">
+              {isGenerating ? (
                 <>
                   <LoaderCircle className="mr-2 h-4 w-4 animate-spin" />
                   Gerando seu plano...
