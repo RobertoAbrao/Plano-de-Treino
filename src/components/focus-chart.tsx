@@ -1,7 +1,8 @@
+
 "use client";
 
 import * as React from "react"
-import { Pie, PieChart, Cell } from "recharts"
+import { Pie, PieChart, Cell, Legend } from "recharts"
 import type { WorkoutPlan } from "@/types/workout"
 
 import {
@@ -10,11 +11,14 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
+  CardFooter,
 } from "@/components/ui/card"
 import {
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
+  ChartLegend,
+  ChartLegendContent,
 } from "@/components/ui/chart"
 import { type ChartConfig } from "@/components/ui/chart"
 
@@ -98,15 +102,22 @@ export function FocusChart({ plan }: FocusChartProps) {
     };
 
     Object.values(plan).forEach(day => {
-        const focusKey = getFocusKey(day.title);
-        focusCounts[focusKey]++;
+        if (day.title) {
+            const focusKey = getFocusKey(day.title);
+            focusCounts[focusKey]++;
+        }
     });
 
     return Object.entries(focusCounts)
-        .map(([focus, value]) => ({ focus, value, fill: focusColors[focus] }))
+        .map(([focus, value]) => ({ name: (chartConfig[focus as keyof typeof chartConfig] as any)?.label, value, fill: focusColors[focus], focus }))
         .filter(d => d.value > 0);
 
   }, [plan]);
+
+  const totalValue = React.useMemo(() => {
+    return chartData.reduce((acc, curr) => acc + curr.value, 0)
+  }, [chartData])
+
 
   if (chartData.length === 0) {
       return null;
@@ -126,22 +137,26 @@ export function FocusChart({ plan }: FocusChartProps) {
           <PieChart>
             <ChartTooltip
               cursor={false}
-              content={<ChartTooltipContent hideLabel />}
+              content={<ChartTooltipContent hideLabel nameKey="name" />}
             />
             <Pie
               data={chartData}
               dataKey="value"
-              nameKey="focus"
+              nameKey="name"
               innerRadius={60}
               strokeWidth={5}
+              labelLine={false}
             >
-               {chartData.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={entry.fill} />
+               {chartData.map((entry) => (
+                    <Cell key={`cell-${entry.name}`} fill={entry.fill} name={entry.name} />
                 ))}
             </Pie>
           </PieChart>
         </ChartContainer>
       </CardContent>
+       <CardFooter className="flex-col gap-2 text-sm pt-4">
+        <ChartLegend content={<ChartLegendContent nameKey="name" />} />
+      </CardFooter>
     </Card>
   )
 }
