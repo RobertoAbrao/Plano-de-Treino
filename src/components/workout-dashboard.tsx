@@ -126,7 +126,7 @@ export default function WorkoutDashboard() {
   return (
     <div className="max-w-5xl mx-auto p-4 sm:p-6 lg:p-8 font-body">
       <header className="text-center mb-8">
-        <h1 className="text-3xl sm:text-4xl font-bold text-foreground font-headline">Plano de Treino - Fase 2: Progressão</h1>
+        <h1 className="text-3xl sm:text-4xl font-bold text-foreground font-headline">Plano de treino</h1>
         <p className="mt-2 text-lg text-muted-foreground">Seu painel de controle para aumentar a intensidade, ganhar força e acelerar a queima de gordura.</p>
       </header>
 
