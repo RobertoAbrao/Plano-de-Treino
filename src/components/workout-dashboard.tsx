@@ -263,13 +263,13 @@ export default function WorkoutDashboard() {
                 {/* Coluna Lateral */}
                 <aside className="lg:col-span-1 space-y-8">
                      <Card>
-                        <CardHeader>
+                        <CardHeader className="items-center">
                             <CardTitle>Progresso Semanal</CardTitle>
                             <CardDescription>Conclua seus treinos e veja sua barra de progresso encher.</CardDescription>
                         </CardHeader>
                         <CardContent>
                             <Progress value={weeklyProgress} className="h-3" />
-                            <p className="text-right text-sm font-medium text-muted-foreground mt-2">{Math.round(weeklyProgress)}% Completo</p>
+                            <p className="text-center text-sm font-medium text-muted-foreground mt-2">{Math.round(weeklyProgress)}% Completo</p>
                         </CardContent>
                     </Card>
 

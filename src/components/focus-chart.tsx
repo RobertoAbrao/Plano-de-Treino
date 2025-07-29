@@ -126,7 +126,7 @@ export function FocusChart({ plan }: FocusChartProps) {
         <CardTitle>Foco da Semana</CardTitle>
         <CardDescription>Distribuição dos seus treinos</CardDescription>
       </CardHeader>
-      <CardContent className="flex-1 pb-0">
+      <CardContent className="flex-1 pb-0 flex justify-center">
         <ChartContainer
           config={chartConfig}
           className="mx-auto aspect-square max-h-[250px]"
@@ -149,7 +149,7 @@ export function FocusChart({ plan }: FocusChartProps) {
                 ))}
             </Pie>
             <ChartLegend
-                content={<ChartLegendContent nameKey="name" />}
+                content={<ChartLegendContent nameKey="name" className="flex-wrap" />}
                 payload={chartData.map(item => ({
                     value: item.name,
                     type: 'square',
