@@ -3,7 +3,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Dumbbell, Target, Wand2 } from "lucide-react";
+import { Dumbbell, Target, Bot } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import {
@@ -29,7 +29,7 @@ const links = [
   {
     href: "/generator",
     label: "Gerador de Treino",
-    icon: Wand2,
+    icon: Bot,
   },
 ];
 
@@ -64,3 +64,4 @@ export function MainNav() {
 }
 
     
+

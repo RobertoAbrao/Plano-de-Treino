@@ -5,7 +5,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { Wand2, LoaderCircle } from "lucide-react";
+import { Bot, LoaderCircle } from "lucide-react";
 import { useWorkoutPlan } from "@/contexts/workout-plan-context";
 
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
@@ -58,7 +58,7 @@ export function WorkoutGeneratorCard({ onPlanGenerated }: WorkoutGeneratorCardPr
     <Card>
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
-          <Wand2 className="text-primary" />
+          <Bot className="text-primary" />
           Gerador de Treino
         </CardTitle>
         <CardDescription>
