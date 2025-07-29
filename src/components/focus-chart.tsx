@@ -2,7 +2,7 @@
 "use client";
 
 import * as React from "react"
-import { Pie, PieChart, Cell, Legend } from "recharts"
+import { Pie, PieChart, Cell } from "recharts"
 import type { WorkoutPlan } from "@/types/workout"
 
 import {
@@ -102,9 +102,11 @@ export function FocusChart({ plan }: FocusChartProps) {
     };
 
     Object.values(plan).forEach(day => {
-        if (day.title) {
+        if (day && day.title) {
             const focusKey = getFocusKey(day.title);
-            focusCounts[focusKey]++;
+            if (focusCounts.hasOwnProperty(focusKey)) {
+                focusCounts[focusKey]++;
+            }
         }
     });
 
@@ -113,11 +115,6 @@ export function FocusChart({ plan }: FocusChartProps) {
         .filter(d => d.value > 0);
 
   }, [plan]);
-
-  const totalValue = React.useMemo(() => {
-    return chartData.reduce((acc, curr) => acc + curr.value, 0)
-  }, [chartData])
-
 
   if (chartData.length === 0) {
       return null;
@@ -151,11 +148,19 @@ export function FocusChart({ plan }: FocusChartProps) {
                     <Cell key={`cell-${entry.name}`} fill={entry.fill} name={entry.name} />
                 ))}
             </Pie>
+            <ChartLegend
+              content={<ChartLegendContent nameKey="name" />}
+              payload={chartData.map(item => ({
+                  value: item.name,
+                  type: 'square',
+                  color: item.fill,
+              }))}
+            />
           </PieChart>
         </ChartContainer>
       </CardContent>
        <CardFooter className="flex-col gap-2 text-sm pt-4">
-        <ChartLegend content={<ChartLegendContent nameKey="name" />} />
+        {/* The legend is now rendered inside the ChartContainer, but we can keep the footer for spacing or add other info here if needed */}
       </CardFooter>
     </Card>
   )
