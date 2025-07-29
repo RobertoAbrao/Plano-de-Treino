@@ -206,7 +206,7 @@ export default function WorkoutDashboard() {
       <footer className="mt-8">
          <Card>
             <CardHeader>
-                <CardTitle>Lembretes para a Fase 2</CardTitle>
+                <CardTitle>Lembretes</CardTitle>
             </CardHeader>
             <CardContent>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-left">
