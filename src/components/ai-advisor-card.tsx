@@ -89,7 +89,7 @@ export function AiAdvisorCard({ onPlanGenerated }: AiAdvisorCardProps) {
                 </FormItem>
               )}
             />
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <FormField
                 control={form.control}
                 name="fitnessLevel"
@@ -100,7 +100,7 @@ export function AiAdvisorCard({ onPlanGenerated }: AiAdvisorCardProps) {
                       <RadioGroup
                         onValueChange={field.onChange}
                         defaultValue={field.value}
-                        className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4"
+                        className="flex flex-col space-y-2"
                       >
                         <FormItem className="flex items-center space-x-3 space-y-0">
                           <FormControl>
@@ -142,7 +142,7 @@ export function AiAdvisorCard({ onPlanGenerated }: AiAdvisorCardProps) {
                       <RadioGroup
                         onValueChange={field.onChange}
                         defaultValue={field.value}
-                        className="flex flex-row space-y-0 space-x-4"
+                        className="flex flex-col space-y-2"
                       >
                         <FormItem className="flex items-center space-x-3 space-y-0">
                           <FormControl>
