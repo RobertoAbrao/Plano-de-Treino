@@ -15,7 +15,7 @@ interface WorkoutPlanContextType {
   deleteExercise: (day: DayKey, exerciseId: string) => void;
   addExercise: (day: DayKey, exerciseData: Omit<Exercise, 'completed'>) => void;
   updateDayTitle: (day: DayKey, newTitle: string) => void;
-  generatePlan: (goal: string, level: "iniciante" | "intermediario" | "avancado", gender: "homem" | "mulher") => Promise<void>;
+  generatePlan: (goal: string, level: "iniciante" | "intermediario" | "avancado", gender: "homem" | "mulher") => Promise<any>;
   isLoading: boolean;
   isGenerating: boolean;
 }
@@ -96,7 +96,12 @@ export const WorkoutPlanProvider = ({ children }: { children: ReactNode }) => {
     setIsGenerating(true);
     try {
         const result = await getWorkoutAdvice({ fitnessGoal: goal, fitnessLevel: level, gender: gender });
-        setPlan(result);
+        const newPlan: WorkoutPlan = {
+            ...result,
+            reminders: initialData.reminders,
+        };
+        setPlan(newPlan);
+        return newPlan;
     } catch (e) {
         console.error("Failed to generate workout plan:", e);
         throw e; // re-throw to be caught by the component
