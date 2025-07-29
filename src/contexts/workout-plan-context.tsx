@@ -30,7 +30,7 @@ export const WorkoutPlanProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     try {
       const savedPlan = localStorage.getItem(LOCAL_STORAGE_KEY);
-      if (savedPlan) {
+      if (savedPlan && savedPlan !== 'undefined') {
         setPlanState(JSON.parse(savedPlan));
       } else {
         setPlanState(initialData);
