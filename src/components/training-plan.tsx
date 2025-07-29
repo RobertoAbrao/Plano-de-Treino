@@ -13,9 +13,15 @@ import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Skeleton } from "@/components/ui/skeleton";
 import { ExerciseEditor } from "@/components/exercise-editor";
-import { Input } from "@/components/ui/input";
 import { TimerModal } from "@/components/timer-modal";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 import {
   AlertDialog,
   AlertDialogAction,
@@ -30,6 +36,15 @@ import {
 
 
 const dayOrder: DayKey[] = ["segunda", "terca", "quarta", "quinta", "sexta"];
+const workoutTitles = [
+    "Treino A (Empurrar)",
+    "Treino B (Puxar)",
+    "Treino C (Pernas)",
+    "Foco em Cardio & Core",
+    "Full Body & Ombros",
+    "Descanso Ativo",
+    "Foco em Braços",
+];
 
 export function TrainingPlan() {
   const { plan, updateExercise, deleteExercise, addExercise, updateDayTitle, isLoading } = useWorkoutPlan();
@@ -108,11 +123,17 @@ export function TrainingPlan() {
               plan[day] ? (
                 <TabsContent key={day} value={day} className="mt-6">
                   <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-4 gap-4">
-                    <Input
-                      value={plan[day]!.title}
-                      onChange={(e) => updateDayTitle(day, e.target.value)}
-                      className="text-xl font-bold h-auto p-0 border-none focus-visible:ring-0 focus-visible:ring-offset-0 flex-1 tracking-tight bg-transparent"
-                    />
+                     <Select value={plan[day]!.title} onValueChange={(newTitle) => updateDayTitle(day, newTitle)}>
+                        <SelectTrigger className="text-xl font-bold h-auto p-0 border-none focus:ring-0 focus:ring-offset-0 flex-1 tracking-tight bg-transparent w-full sm:w-auto">
+                            <SelectValue placeholder="Selecione o tipo de treino" />
+                        </SelectTrigger>
+                        <SelectContent>
+                            {workoutTitles.map(title => (
+                                <SelectItem key={title} value={title}>{title}</SelectItem>
+                            ))}
+                        </SelectContent>
+                    </Select>
+
                      <Button onClick={() => setTimerOpen(true)} className="w-full sm:hidden">
                         <Timer className="mr-2 h-5 w-5" />
                         Timer de Descanso
