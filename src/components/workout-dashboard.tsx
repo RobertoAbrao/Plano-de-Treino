@@ -12,7 +12,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Skeleton } from '@/components/ui/skeleton';
-import { FocusChart } from '@/components/focus-chart';
 import { ExerciseEditor } from '@/components/exercise-editor';
 import { AiAdvisorCard } from '@/components/ai-advisor-card';
 
@@ -130,8 +129,8 @@ export default function WorkoutDashboard() {
         <p className="mt-2 text-lg text-muted-foreground">Seu painel de controle para aumentar a intensidade, ganhar força e acelerar a queima de gordura.</p>
       </header>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
-        <Card className="lg:col-span-2">
+      <div className="mb-8">
+        <Card>
           <CardHeader>
             <CardTitle>Progresso Semanal</CardTitle>
             <CardDescription>Marque os exercícios concluídos para atualizar seu progresso.</CardDescription>
@@ -141,7 +140,6 @@ export default function WorkoutDashboard() {
             <p className="text-center text-sm font-medium text-primary mt-2">{Math.round(weeklyProgress)}% Completo</p>
           </CardContent>
         </Card>
-        <FocusChart />
       </div>
 
       <Card>

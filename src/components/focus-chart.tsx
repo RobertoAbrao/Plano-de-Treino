@@ -36,28 +36,6 @@ const chartConfig = {
 
 export function FocusChart() {
   return (
-    <Card className="h-full flex flex-col">
-      <CardHeader>
-        <CardTitle className="text-center">Foco da Semana</CardTitle>
-      </CardHeader>
-      <CardContent className="flex-1 flex items-center justify-center pb-6">
-        <ChartContainer config={chartConfig} className="mx-auto aspect-square max-h-[250px]">
-          <PieChart>
-            <ChartTooltip
-              cursor={false}
-              content={<ChartTooltipContent hideLabel />}
-            />
-            <Pie
-              data={chartData}
-              dataKey="value"
-              nameKey="focus"
-              innerRadius="70%"
-              strokeWidth={5}
-            />
-            <ChartLegend content={<ChartLegendContent nameKey="focus" />} />
-          </PieChart>
-        </ChartContainer>
-      </CardContent>
-    </Card>
+    null
   )
 }
