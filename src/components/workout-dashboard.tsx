@@ -2,7 +2,7 @@
 "use client";
 
 import { useState, useEffect, useMemo } from 'react';
-import { Pencil, PlusCircle, Trash2 } from 'lucide-react';
+import { Pencil, PlusCircle, Trash2, Timer } from 'lucide-react';
 import type { WorkoutPlan, DayKey, Exercise } from '@/types/workout';
 import { initialData } from '@/lib/initial-data';
 import { dayNames } from '@/types/workout';
@@ -16,6 +16,8 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { ExerciseEditor } from '@/components/exercise-editor';
 import { AiAdvisorCard } from '@/components/ai-advisor-card';
 import { Input } from '@/components/ui/input';
+import { TimerModal } from '@/components/timer-modal';
+
 
 const LOCAL_STORAGE_KEY = 'workoutPlan_fase2';
 
@@ -27,6 +29,7 @@ export default function WorkoutDashboard() {
   
   const [isEditorOpen, setEditorOpen] = useState(false);
   const [editingInfo, setEditingInfo] = useState<{ day: DayKey; exercise: Exercise | null } | null>(null);
+  const [isTimerOpen, setTimerOpen] = useState(false);
 
 
   useEffect(() => {
@@ -169,11 +172,17 @@ export default function WorkoutDashboard() {
             </TabsList>
             {dayOrder.map((day) => (
               <TabsContent key={day} value={day} className="mt-6">
-                 <Input
-                    value={plan[day].title}
-                    onChange={(e) => handleTitleChange(day, e.target.value)}
-                    className="text-2xl font-bold text-primary mb-4 h-auto p-0 border-none focus-visible:ring-0 focus-visible:ring-offset-0"
-                  />
+                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-4 gap-4">
+                    <Input
+                      value={plan[day].title}
+                      onChange={(e) => handleTitleChange(day, e.target.value)}
+                      className="text-2xl font-bold text-primary h-auto p-0 border-none focus-visible:ring-0 focus-visible:ring-offset-0 flex-1"
+                    />
+                    <Button onClick={() => setTimerOpen(true)} size="lg" className="w-full sm:w-auto">
+                        <Timer className="mr-2 h-5 w-5" />
+                        Timer de Descanso
+                    </Button>
+                </div>
                  <div className="space-y-4">
                     {plan[day].exercises.map((exercise) => (
                         <div key={exercise.id} className="exercise-item bg-background p-4 rounded-lg border flex flex-col sm:flex-row sm:items-start gap-4">
@@ -246,6 +255,11 @@ export default function WorkoutDashboard() {
         onOpenChange={setEditorOpen}
         onSave={handleSaveExercise}
         editingInfo={editingInfo}
+      />
+
+      <TimerModal 
+        isOpen={isTimerOpen}
+        onOpenChange={setTimerOpen}
       />
     </div>
   );
