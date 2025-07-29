@@ -18,6 +18,7 @@ import { AiAdvisorCard } from '@/components/ai-advisor-card';
 import { Input } from '@/components/ui/input';
 import { TimerModal } from '@/components/timer-modal';
 import { FocusChart } from '@/components/focus-chart';
+import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 
 
 const LOCAL_STORAGE_KEY = 'workoutPlan_fase2';
@@ -26,7 +27,6 @@ const dayOrder: DayKey[] = ['segunda', 'terca', 'quarta', 'quinta', 'sexta'];
 
 export default function WorkoutDashboard() {
   const [plan, setPlan] = useState<WorkoutPlan | null>(null);
-  const [reminders, setReminders] = useState<Reminder[]>(initialData.reminders);
   const [isClient, setIsClient] = useState(false);
   
   const [isEditorOpen, setEditorOpen] = useState(false);
@@ -39,36 +39,25 @@ export default function WorkoutDashboard() {
     try {
       const savedPlan = localStorage.getItem(LOCAL_STORAGE_KEY);
       if (savedPlan) {
-        const parsedData = JSON.parse(savedPlan);
-        setPlan(parsedData);
-        if (parsedData.reminders && Array.isArray(parsedData.reminders)) {
-          setReminders(parsedData.reminders);
-        } else {
-          setReminders(initialData.reminders);
-        }
+        setPlan(JSON.parse(savedPlan));
       } else {
         setPlan(initialData);
-        setReminders(initialData.reminders);
       }
     } catch (error) {
       console.error("Failed to load workout plan from local storage:", error);
       setPlan(initialData);
-      setReminders(initialData.reminders);
     }
   }, []);
 
   useEffect(() => {
     if (plan && isClient) {
-      const dataToSave = {
-        ...plan,
-        reminders: reminders,
-      };
-      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(dataToSave));
+      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(plan));
     }
-  }, [plan, reminders, isClient]);
+  }, [plan, isClient]);
 
-  const { totalExercises, completedExercises } = useMemo(() => {
-    if (!plan) return { totalExercises: 0, completedExercises: 0 };
+  const { totalExercises, completedExercises, reminders } = useMemo(() => {
+    if (!plan) return { totalExercises: 0, completedExercises: 0, reminders: [] };
+
     let total = 0;
     let completed = 0;
     Object.values(plan).forEach(day => {
@@ -77,7 +66,10 @@ export default function WorkoutDashboard() {
             completed += day.exercises.filter(ex => ex.completed).length;
         }
     });
-    return { totalExercises: total, completedExercises: completed };
+
+    const currentReminders = plan.reminders || [];
+
+    return { totalExercises: total, completedExercises: completed, reminders: currentReminders };
   }, [plan]);
 
   const weeklyProgress = totalExercises > 0 ? (completedExercises / totalExercises) * 100 : 0;
@@ -151,9 +143,6 @@ export default function WorkoutDashboard() {
 
   const handlePlanGenerated = (newPlan: WorkoutPlan) => {
     setPlan(newPlan);
-     if (newPlan.reminders && Array.isArray(newPlan.reminders)) {
-      setReminders(newPlan.reminders);
-    }
   };
 
   if (!isClient || !plan) {
@@ -187,19 +176,22 @@ export default function WorkoutDashboard() {
                     <Card>
                         <CardContent className="p-4 sm:p-6">
                         <Tabs defaultValue="segunda" className="w-full">
-                            <TabsList className="grid w-full grid-cols-2 sm:grid-cols-5 h-auto">
-                                {dayOrder.map((day) => (
-                                    <TabsTrigger key={day} value={day}>{dayNames[day]}</TabsTrigger>
-                                ))}
-                            </TabsList>
+                            <ScrollArea className="w-full whitespace-nowrap">
+                                <TabsList className="inline-flex h-auto">
+                                    {dayOrder.map((day) => (
+                                        <TabsTrigger key={day} value={day}>{dayNames[day]}</TabsTrigger>
+                                    ))}
+                                </TabsList>
+                                <ScrollBar orientation="horizontal" />
+                            </ScrollArea>
                             {dayOrder.map((day) => (
                             plan[day] && <TabsContent key={day} value={day} className="mt-6">
                                 <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-4 gap-4">
-                                    <Input
-                                    value={plan[day]!.title}
-                                    onChange={(e) => handleTitleChange(day, e.target.value)}
-                                    className="text-xl font-bold h-auto p-0 border-none focus-visible:ring-0 focus-visible:ring-offset-0 flex-1 tracking-tight"
-                                    />
+                                     <Input
+                                        value={plan[day]!.title}
+                                        onChange={(e) => handleTitleChange(day, e.target.value)}
+                                        className="text-xl font-bold h-auto p-0 border-none focus-visible:ring-0 focus-visible:ring-offset-0 flex-1 tracking-tight bg-transparent"
+                                        />
                                     <Button onClick={() => setTimerOpen(true)} className="w-full sm:w-auto">
                                         <Timer className="mr-2 h-5 w-5" />
                                         Timer de Descanso
@@ -207,21 +199,21 @@ export default function WorkoutDashboard() {
                                 </div>
                                 <div className="space-y-3">
                                     {plan[day]!.exercises.map((exercise) => (
-                                        <div key={exercise.id} className="exercise-item bg-background p-3 rounded-lg border flex flex-col sm:flex-row sm:items-center gap-4 transition-all hover:border-primary/50">
-                                            <div className="flex items-center flex-1">
-                                                <Checkbox 
-                                                    id={`${day}-${exercise.id}`}
-                                                    checked={exercise.completed}
-                                                    onCheckedChange={() => handleToggleExercise(day, exercise.id)}
-                                                    className="h-5 w-5 rounded"
-                                                />
-                                                <label htmlFor={`${day}-${exercise.id}`} className="ml-4 block text-sm w-full">
+                                        <div key={exercise.id} className="exercise-item bg-background p-3 rounded-lg border flex items-start gap-4 transition-all hover:border-primary/50">
+                                            <Checkbox 
+                                                id={`${day}-${exercise.id}`}
+                                                checked={exercise.completed}
+                                                onCheckedChange={() => handleToggleExercise(day, exercise.id)}
+                                                className="h-5 w-5 rounded mt-1"
+                                            />
+                                            <div className="flex-1">
+                                                <label htmlFor={`${day}-${exercise.id}`} className="block w-full">
                                                     <span className={`font-semibold text-base text-foreground ${exercise.completed ? 'line-through text-muted-foreground' : ''}`}>{exercise.name}</span>
                                                     <span className="text-primary font-bold ml-2 text-base">{exercise.reps}</span>
                                                     <div className="text-muted-foreground mt-1 prose prose-sm max-w-none" dangerouslySetInnerHTML={{ __html: exercise.notes }} />
                                                 </label>
                                             </div>
-                                            <div className="flex gap-2 self-end sm:self-center">
+                                            <div className="flex flex-col sm:flex-row gap-1 -mr-1">
                                                 <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => handleOpenEditor(day, exercise)}>
                                                     <Pencil className="h-4 w-4" />
                                                     <span className="sr-only">Editar</span>
@@ -302,3 +294,5 @@ export default function WorkoutDashboard() {
     </div>
   );
 }
+
+    
