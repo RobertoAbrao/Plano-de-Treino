@@ -145,22 +145,22 @@ export function FocusChart({ plan }: FocusChartProps) {
               labelLine={false}
             >
                {chartData.map((entry) => (
-                    <Cell key={`cell-${entry.name}`} fill={entry.fill} name={entry.name} />
+                    <Cell key={`cell-${entry.name}`} fill={entry.fill} name={entry.focus} />
                 ))}
             </Pie>
-            <ChartLegend
-              content={<ChartLegendContent nameKey="name" />}
-              payload={chartData.map(item => ({
-                  value: item.name,
-                  type: 'square',
-                  color: item.fill,
-              }))}
-            />
           </PieChart>
         </ChartContainer>
       </CardContent>
        <CardFooter className="flex-col gap-2 text-sm pt-4">
-        {/* The legend is now rendered inside the ChartContainer, but we can keep the footer for spacing or add other info here if needed */}
+        <ChartLegend
+            content={<ChartLegendContent nameKey="name" />}
+            payload={chartData.map(item => ({
+                value: item.focus,
+                type: 'square',
+                color: item.fill,
+                payload: { name: item.name },
+            }))}
+        />
       </CardFooter>
     </Card>
   )
