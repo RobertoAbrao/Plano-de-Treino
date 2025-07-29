@@ -15,6 +15,7 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Skeleton } from '@/components/ui/skeleton';
 import { ExerciseEditor } from '@/components/exercise-editor';
 import { AiAdvisorCard } from '@/components/ai-advisor-card';
+import { Input } from '@/components/ui/input';
 
 const LOCAL_STORAGE_KEY = 'workoutPlan_fase2';
 
@@ -91,6 +92,15 @@ export default function WorkoutDashboard() {
      }
   };
 
+  const handleTitleChange = (day: DayKey, newTitle: string) => {
+    setPlan(prevPlan => {
+        if (!prevPlan) return null;
+        const newPlan = { ...prevPlan };
+        newPlan[day] = { ...newPlan[day], title: newTitle };
+        return newPlan;
+    });
+  };
+
   const handleSaveExercise = (day: DayKey, exerciseData: Omit<Exercise, 'completed'>) => {
      setPlan(prevPlan => {
         if (!prevPlan) return null;
@@ -159,7 +169,11 @@ export default function WorkoutDashboard() {
             </TabsList>
             {dayOrder.map((day) => (
               <TabsContent key={day} value={day} className="mt-6">
-                 <h2 className="text-2xl font-bold text-primary mb-4">{plan[day].title}</h2>
+                 <Input
+                    value={plan[day].title}
+                    onChange={(e) => handleTitleChange(day, e.target.value)}
+                    className="text-2xl font-bold text-primary mb-4 h-auto p-0 border-none focus-visible:ring-0 focus-visible:ring-offset-0"
+                  />
                  <div className="space-y-4">
                     {plan[day].exercises.map((exercise) => (
                         <div key={exercise.id} className="exercise-item bg-background p-4 rounded-lg border flex flex-col sm:flex-row sm:items-start gap-4">
@@ -236,3 +250,5 @@ export default function WorkoutDashboard() {
     </div>
   );
 }
+
+    
