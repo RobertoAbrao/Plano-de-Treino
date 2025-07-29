@@ -1,13 +1,13 @@
+
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import type { DayKey, Exercise } from "@/types/workout";
 import { exerciseList } from "@/lib/exercises";
-import { getExerciseDescription } from "@/ai/flows/exercise-describer";
-import { LoaderCircle } from "lucide-react";
+import { exerciseDescriptions } from "@/lib/exercise-descriptions";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -48,7 +48,6 @@ interface ExerciseEditorProps {
 }
 
 export function ExerciseEditor({ isOpen, onOpenChange, onSave, editingInfo }: ExerciseEditorProps) {
-  const [isFetchingDescription, setIsFetchingDescription] = useState(false);
   const form = useForm<ExerciseFormData>({
     resolver: zodResolver(exerciseSchema),
     defaultValues: {
@@ -76,23 +75,12 @@ export function ExerciseEditor({ isOpen, onOpenChange, onSave, editingInfo }: Ex
     }
   }, [isOpen, editingInfo, form]);
 
-  const handleExerciseChange = async (exerciseName: string) => {
+  const handleExerciseChange = (exerciseName: string) => {
     if (!exerciseName) return;
     
-    // Set field value immediately
     form.setValue("name", exerciseName);
-    form.setValue("notes", "Gerando descrição...");
-    setIsFetchingDescription(true);
-    
-    try {
-      const result = await getExerciseDescription({ exerciseName });
-      form.setValue("notes", result.description);
-    } catch (error) {
-      console.error("Failed to get exercise description:", error);
-      form.setValue("notes", "Não foi possível carregar a descrição. Adicione manualmente.");
-    } finally {
-        setIsFetchingDescription(false);
-    }
+    const description = exerciseDescriptions[exerciseName] || "Descrição não encontrada.";
+    form.setValue("notes", description);
   };
 
   const handleSubmit = (data: ExerciseFormData) => {
@@ -163,14 +151,12 @@ export function ExerciseEditor({ isOpen, onOpenChange, onSave, editingInfo }: Ex
                   <FormLabel>
                     <div className="flex items-center gap-2">
                         Notas
-                        {isFetchingDescription && <LoaderCircle className="h-4 w-4 animate-spin" />}
                     </div>
                   </FormLabel>
                   <FormControl>
                     <Textarea
                       placeholder="Selecione um exercício para ver a descrição."
                       {...field}
-                      disabled={isFetchingDescription}
                     />
                   </FormControl>
                   <FormMessage />
