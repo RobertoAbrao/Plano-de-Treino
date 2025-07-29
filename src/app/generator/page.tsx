@@ -2,7 +2,7 @@
 "use client";
 
 import { useWorkoutPlan } from "@/contexts/workout-plan-context";
-import { AiAdvisorCard } from "@/components/ai-advisor-card";
+import { WorkoutGeneratorCard } from "@/components/workout-generator-card";
 import { useToast } from "@/hooks/use-toast";
 
 export default function GeneratorPage() {
@@ -20,7 +20,7 @@ export default function GeneratorPage() {
   return (
     <div className="flex justify-center items-start h-full">
         <div className="w-full max-w-2xl">
-            <AiAdvisorCard onPlanGenerated={handlePlanGenerated} />
+            <WorkoutGeneratorCard onPlanGenerated={handlePlanGenerated} />
         </div>
     </div>
   );

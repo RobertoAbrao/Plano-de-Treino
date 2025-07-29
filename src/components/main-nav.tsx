@@ -28,7 +28,7 @@ const links = [
   },
   {
     href: "/generator",
-    label: "Gerador IA",
+    label: "Gerador de Treino",
     icon: Wand2,
   },
 ];
