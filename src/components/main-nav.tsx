@@ -3,7 +3,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Dumbbell, Target, Wand2, Bot } from "lucide-react";
+import { Dumbbell, Target, Wand2 } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import {
@@ -40,8 +40,8 @@ export function MainNav() {
     <Sidebar>
       <SidebarHeader>
         <div className="flex items-center gap-2">
-            <Bot className="size-6 text-primary" />
-            <SidebarTitle>Workout AI</SidebarTitle>
+            <Dumbbell className="size-6 text-primary" />
+            <SidebarTitle>Personal Trainer</SidebarTitle>
         </div>
       </SidebarHeader>
       <SidebarMenu>
