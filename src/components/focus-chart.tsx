@@ -134,7 +134,7 @@ export function FocusChart({ plan }: FocusChartProps) {
           <PieChart>
             <ChartTooltip
               cursor={false}
-              content={<ChartTooltipContent hideLabel nameKey="name" />}
+              content={<ChartTooltipContent hideLabel />}
             />
             <Pie
               data={chartData}
