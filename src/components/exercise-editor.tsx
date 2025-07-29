@@ -1,11 +1,13 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import type { DayKey, Exercise } from "@/types/workout";
 import { exerciseList } from "@/lib/exercises";
+import { getExerciseDescription } from "@/ai/flows/exercise-describer";
+import { LoaderCircle } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -46,6 +48,7 @@ interface ExerciseEditorProps {
 }
 
 export function ExerciseEditor({ isOpen, onOpenChange, onSave, editingInfo }: ExerciseEditorProps) {
+  const [isFetchingDescription, setIsFetchingDescription] = useState(false);
   const form = useForm<ExerciseFormData>({
     resolver: zodResolver(exerciseSchema),
     defaultValues: {
@@ -72,6 +75,25 @@ export function ExerciseEditor({ isOpen, onOpenChange, onSave, editingInfo }: Ex
       );
     }
   }, [isOpen, editingInfo, form]);
+
+  const handleExerciseChange = async (exerciseName: string) => {
+    if (!exerciseName) return;
+    
+    // Set field value immediately
+    form.setValue("name", exerciseName);
+    form.setValue("notes", "Gerando descrição...");
+    setIsFetchingDescription(true);
+    
+    try {
+      const result = await getExerciseDescription({ exerciseName });
+      form.setValue("notes", result.description);
+    } catch (error) {
+      console.error("Failed to get exercise description:", error);
+      form.setValue("notes", "Não foi possível carregar a descrição. Adicione manualmente.");
+    } finally {
+        setIsFetchingDescription(false);
+    }
+  };
 
   const handleSubmit = (data: ExerciseFormData) => {
     if (editingInfo) {
@@ -100,7 +122,7 @@ export function ExerciseEditor({ isOpen, onOpenChange, onSave, editingInfo }: Ex
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Nome do Exercício</FormLabel>
-                   <Select onValueChange={field.onChange} defaultValue={field.value}>
+                   <Select onValueChange={handleExerciseChange} defaultValue={field.value}>
                     <FormControl>
                       <SelectTrigger>
                         <SelectValue placeholder="Selecione um exercício" />
@@ -138,11 +160,17 @@ export function ExerciseEditor({ isOpen, onOpenChange, onSave, editingInfo }: Ex
               name="notes"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Notas</FormLabel>
+                  <FormLabel>
+                    <div className="flex items-center gap-2">
+                        Notas
+                        {isFetchingDescription && <LoaderCircle className="h-4 w-4 animate-spin" />}
+                    </div>
+                  </FormLabel>
                   <FormControl>
                     <Textarea
-                      placeholder="Ex: Aumente a carga, mantendo a postura."
+                      placeholder="Selecione um exercício para ver a descrição."
                       {...field}
+                      disabled={isFetchingDescription}
                     />
                   </FormControl>
                   <FormMessage />
