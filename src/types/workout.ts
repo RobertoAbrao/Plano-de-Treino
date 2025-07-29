@@ -21,4 +21,11 @@ export interface DayWorkout {
   exercises: Exercise[];
 }
 
-export type WorkoutPlan = Record<DayKey, DayWorkout>;
+export interface Reminder {
+    title: string;
+    description: string;
+}
+
+export type WorkoutPlan = Record<DayKey, DayWorkout> & {
+    reminders: Reminder[];
+};

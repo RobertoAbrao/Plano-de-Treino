@@ -2,51 +2,54 @@ import type { WorkoutPlan } from '@/types/workout';
 
 export const initialData: WorkoutPlan = {
   segunda: {
-    title: 'Treino C (Pernas)',
+    title: 'Treino A (Empurrar)',
     exercises: [
-      { id: 'seg-1', name: 'Agachamento Goblet', reps: '3x 10-12', notes: '<strong>EVOLUÇÃO!</strong> Faça o agachamento no banco segurando um halter na frente do peito.', completed: false },
-      { id: 'seg-2', name: 'Cadeira Extensora', reps: '3x 8-12', notes: 'Aumente a carga. Segure 1 segundo no pico da contração.', completed: false },
-      { id: 'seg-3', name: 'Cadeira Flexora', reps: '3x 8-12', notes: 'Controle o movimento, principalmente na volta.', completed: false },
-      { id: 'seg-4', name: 'Panturrilha em Pé', reps: '3x 15-20', notes: '<strong>NOVO!</strong> Pode ser feito em máquina ou com um degrau.', completed: false },
-      { id: 'seg-5', name: 'Cardio de Baixo Impacto', reps: '25 min', notes: 'Vamos queimar essas calorias!', completed: false }
+      { id: 'seg-1', name: 'Supino Reto (Barra ou Halteres)', reps: '3x 10-12', notes: '<strong>FOCO:</strong> Mantenha os pés firmes no chão e o corpo estável. NÃO arqueie excessivamente as costas.', completed: true },
+      { id: 'seg-2', name: 'Supino Inclinado (Barra ou Halteres)', reps: '3x 10-12', notes: 'Essa variação trabalha a parte superior do peitoral. <strong>CONTROLE</strong> o movimento na descida.', completed: false },
+      { id: 'seg-3', name: 'Desenvolvimento na Máquina', reps: '3x 12-15', notes: 'Mantenha a postura correta e <strong>EVITE</strong> estender completamente os cotovelos no topo.', completed: false },
+      { id: 'seg-4', name: 'Elevação Lateral', reps: '3x 12-15', notes: 'Eleve os braços até a altura dos ombros, mantendo uma leve flexão nos cotovelos. <strong>CONTROLE</strong> a descida.', completed: false },
     ]
   },
   terca: {
-    title: 'Treino A (Empurrar)',
+    title: 'Treino B (Puxar)',
     exercises: [
-      { id: 'ter-1', name: 'Supino na Máquina', reps: '3x 8-12', notes: 'Aumente a carga. Foque em "espremer" o peitoral.', completed: false },
-      { id: 'ter-2', name: 'Desenvolvimento na Máquina', reps: '3x 8-12', notes: 'Mantenha a postura e controle a descida do peso.', completed: false },
-      { id: 'ter-3', name: 'Elevação Lateral (Halteres)', reps: '3x 10-15', notes: '<strong>NOVO!</strong> Para a parte lateral dos ombros. Use peso leve.', completed: false },
-      { id: 'ter-4', name: 'Tríceps na Polia (Corda)', reps: '3x 8-12', notes: 'Aumente a carga, mantendo os cotovelos fixos.', completed: false },
-      { id: 'ter-5', name: 'Cardio de Baixo Impacto', reps: '25 min', notes: 'Aumentamos o tempo! Elíptico ou Bicicleta.', completed: false }
+      { id: 'ter-1', name: 'Puxada Frontal', reps: '3x 10-12', notes: 'Puxe a barra em direção à parte superior do peito, estufando o peito.', completed: false },
+      { id: 'ter-2', name: 'Remada Curvada', reps: '3x 10-12', notes: 'Mantenha as costas retas e puxe a barra em direção ao abdômen.', completed: false },
+      { id: 'ter-3', name: 'Rosca Direta (Barra ou Halteres)', reps: '3x 12-15', notes: '<strong>EVITE</strong> balançar o corpo. O movimento é só nos cotovelos.', completed: false },
+      { id: 'ter-4', name: 'Rosca Martelo', reps: '3x 12-15', notes: 'Pegada neutra (martelo) para trabalhar diferentes partes do bíceps.', completed: false },
     ]
   },
   quarta: {
-    title: 'Treino B (Puxar)',
+    title: 'Treino C (Pernas)',
     exercises: [
-      { id: 'qua-1', name: 'Puxada Frontal (Máquina)', reps: '3x 8-12', notes: 'Aumente a carga. Puxe a barra até a parte de cima do peito.', completed: false },
-      { id: 'qua-2', name: 'Remada na Máquina', reps: '3x 8-12', notes: 'Foque em juntar as escápulas (omoplatas) a cada repetição.', completed: false },
-      { id: 'qua-3', name: 'Remada Serrote (Halter)', reps: '3x 10 por lado', notes: '<strong>NOVO!</strong> Apoie uma mão no banco. Excelente para as costas.', completed: false },
-      { id: 'qua-4', name: 'Rosca com Halteres', reps: '3x 8-12', notes: 'Aumente a carga. Evite balançar o corpo.', completed: false },
-      { id: 'qua-5', name: 'Cardio de Baixo Impacto', reps: '25 min', notes: 'Mantenha o ritmo!', completed: false }
+      { id: 'qua-1', name: 'Agachamento Livre', reps: '3x 10-12', notes: 'O movimento mais completo para pernas. Mantenha a coluna reta!', completed: false },
+      { id: 'qua-2', name: 'Leg Press', reps: '3x 10-12', notes: 'Permite focar na força das pernas com segurança para as costas.', completed: false },
+      { id: 'qua-3', name: 'Cadeira Extensora', reps: '3x 12-15', notes: 'Isole o quadríceps. Segure por 1 segundo no pico da contração.', completed: false },
+      { id: 'qua-4', name: 'Mesa Flexora', reps: '3x 12-15', notes: 'Foco total nos músculos posteriores da coxa.', completed: false },
+      { id: 'qua-5', name: 'Panturrilha em Pé', reps: '3x 15-20', notes: 'Alongue bem na descida e contraia ao máximo na subida.', completed: false },
     ]
   },
   quinta: {
     title: 'Foco em Cardio & Core',
     exercises: [
-      { id: 'qui-1', name: 'Cardio Intervalado', reps: '25-30 min', notes: '<strong>EVOLUÇÃO!</strong> Ex: No elíptico, faça 2 min em ritmo normal e 1 min em ritmo forte. Repita.', completed: false },
-      { id: 'qui-2', name: 'Prancha Isométrica', reps: '3x (30-45 seg)', notes: 'Mantenha o corpo reto como uma flecha.', completed: false },
-      { id: 'qui-3', name: 'Abdominal Remador', reps: '3x 15', notes: '<strong>NOVO!</strong> Deitado, abrace os joelhos ao subir o tronco.', completed: false }
+      { id: 'qui-1', name: 'Cardio (Corrida, Bicicleta, Elíptico)', reps: '30 min', notes: 'Mantenha um ritmo constante que desafie sua respiração.', completed: false },
+      { id: 'qui-2', name: 'Prancha Isométrica', reps: '4x 45-60 seg', notes: 'Mantenha o abdômen contraído e o corpo reto como uma prancha.', completed: false },
+      { id: 'qui-3', name: 'Abdominal Remador', reps: '4x 15-20', notes: 'Movimento completo que trabalha todo o abdômen.', completed: false },
     ]
   },
   sexta: {
-    title: 'Treino Full Body',
+    title: 'Full Body & Ombros',
     exercises: [
-      { id: 'sex-1', name: 'Agachamento Goblet', reps: '3x 10-12', notes: 'Comece com as pernas, seu maior grupo muscular.', completed: false },
-      { id: 'sex-2', name: 'Supino na Máquina', reps: '3x 10-12', notes: 'Foque na qualidade do movimento.', completed: false },
-      { id: 'sex-3', name: 'Remada na Máquina', reps: '3x 10-12', notes: 'Mantenha o equilíbrio entre empurrar e puxar.', completed: false },
-      { id: 'sex-4', name: 'Elevação Lateral', reps: '3x 12-15', notes: 'Para dar um acabamento nos ombros.', completed: false },
-      { id: 'sex-5', name: 'Cardio de Baixo Impacto', reps: '20 min', notes: 'Ritmo mais leve para recuperação.', completed: false }
+      { id: 'sex-1', name: 'Levantamento Terra', reps: '3x 8-10', notes: 'Exercício poderoso para o corpo todo. A técnica é <strong>CRUCIAL</strong>.', completed: false },
+      { id: 'sex-2', name: 'Supino Reto (Barra ou Halteres)', reps: '3x 10-12', notes: 'Foque na qualidade do movimento e na contração do peitoral.', completed: false },
+      { id: 'sex-3', name: 'Remada Cavalinho', reps: '3x 10-12', notes: 'Excelente para construir densidade no meio das costas.', completed: false },
+      { id: 'sex-4', name: 'Desenvolvimento de Ombros (Barra ou Halteres)', reps: '3x 10-12', notes: 'O principal construtor de ombros. Mantenha o core firme.', completed: false },
+      { id: 'sex-5', name: 'Elevação Pélvica', reps: '4x 12-15', notes: 'Ativação máxima dos glúteos. Use uma carga desafiadora.', completed: false },
     ]
-  }
+  },
+  reminders: [
+    { title: "🎯 Foco na Forma", description: "Nunca sacrifique a postura para levantar mais peso. É melhor fazer com menos peso e da forma correta." },
+    { title: "💧 Hidratação é Chave", description: "Beba água antes, durante e depois do treino para manter o desempenho e a recuperação." },
+    { title: "🍎 Nutrição Pós-Treino", description: "Consuma uma combinação de proteínas e carboidratos após o treino para ajudar na recuperação muscular." }
+  ]
 };

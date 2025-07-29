@@ -1,5 +1,9 @@
 import WorkoutDashboard from '@/components/workout-dashboard';
 
 export default function Home() {
-  return <WorkoutDashboard />;
+  return (
+    <div className="bg-muted/40">
+        <WorkoutDashboard />
+    </div>
+  );
 }
