@@ -13,6 +13,7 @@ import {
   SidebarMenuButton,
   SidebarHeader,
   SidebarTitle,
+  useSidebar,
 } from "@/components/ui/sidebar";
 
 const links = [
@@ -35,6 +36,7 @@ const links = [
 
 export function MainNav() {
   const pathname = usePathname();
+  const { setOpenMobile } = useSidebar();
 
   return (
     <Sidebar>
@@ -47,7 +49,11 @@ export function MainNav() {
       <SidebarMenu>
         {links.map((link) => (
           <SidebarMenuItem key={link.href}>
-            <Link href={link.href} className="w-full">
+            <Link 
+              href={link.href} 
+              className="w-full"
+              onClick={() => setOpenMobile(false)}
+            >
               <SidebarMenuButton
                 isActive={pathname === link.href}
                 tooltip={link.label}
