@@ -116,6 +116,11 @@ export function FocusChart({ plan }: FocusChartProps) {
 
   }, [plan]);
 
+  const totalDays = React.useMemo(() => {
+    return chartData.reduce((acc, curr) => acc + curr.value, 0)
+  }, [chartData]);
+
+
   if (chartData.length === 0) {
       return null;
   }
@@ -129,7 +134,7 @@ export function FocusChart({ plan }: FocusChartProps) {
       <CardContent className="flex-1 pb-0 flex justify-center">
         <ChartContainer
           config={chartConfig}
-          className="mx-auto aspect-square max-h-[250px]"
+          className="aspect-square max-h-[250px]"
         >
           <PieChart>
             <ChartTooltip
@@ -149,7 +154,7 @@ export function FocusChart({ plan }: FocusChartProps) {
                 ))}
             </Pie>
             <ChartLegend
-                content={<ChartLegendContent nameKey="name" className="flex-wrap" />}
+                content={<ChartLegendContent nameKey="name" className="flex-wrap justify-center" />}
                 payload={chartData.map(item => ({
                     value: item.name,
                     type: 'square',
