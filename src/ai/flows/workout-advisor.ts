@@ -30,7 +30,15 @@ const ExerciseSchema = z.object({
 });
 
 const DayWorkoutSchema = z.object({
-  title: z.string().describe("The title for the day's workout, like 'Treino A (Empurrar)' or 'Foco em Cardio & Core'."),
+  title: z.enum([
+    "Treino A (Empurrar)",
+    "Treino B (Puxar)",
+    "Treino C (Pernas)",
+    "Foco em Cardio & Core",
+    "Full Body & Ombros",
+    "Descanso Ativo",
+    "Foco em Braços",
+  ]).describe("The title for the day's workout. You MUST choose one of the predefined titles."),
   exercises: z.array(ExerciseSchema).describe("A list of exercises for the day."),
 });
 
@@ -64,7 +72,7 @@ const prompt = ai.definePrompt({
     *   **Beginner (Iniciante):** Focus on fundamental compound movements, machine-based exercises for safety, and full-body or upper/lower splits. Keep volume moderate.
     *   **Intermediate (Intermediário):** Introduce more complex free-weight exercises, increase volume and intensity, and use more specific splits (e.g., Push/Pull/Legs).
     *   **Advanced (Avançado):** Incorporate advanced techniques (e.g., supersets, drop sets), higher volume, and exercises that require more skill and stability.
-2.  **Structure the Week:** Create a logical weekly structure appropriate for the user's level. You can use splits like Push/Pull/Legs, Upper/Lower, or Full Body days. Ensure there's a balance between muscle groups and recovery.
+2.  **Structure the Week:** Create a logical weekly structure appropriate for the user's level. You can use splits like Push/Pull/Legs, Upper/Lower, or Full Body days. Ensure there's a balance between muscle groups and recovery. For the daily workout title, you MUST select one from the available enum options.
 3.  **Select Exercises:** You MUST choose exercises exclusively from the following list. Do not invent exercises.
     Available Exercises: ${exerciseList.join(', ')}
 4.  **Define Reps/Sets:** Provide appropriate sets and repetitions for each exercise that align with the user's goal and level (e.g., higher reps for endurance, lower reps for strength/hypertrophy, lower sets for beginners).
