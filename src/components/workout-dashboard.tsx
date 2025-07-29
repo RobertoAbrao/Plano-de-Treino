@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState, useEffect, useMemo } from 'react';
@@ -16,6 +17,8 @@ import { ExerciseEditor } from '@/components/exercise-editor';
 import { AiAdvisorCard } from '@/components/ai-advisor-card';
 
 const LOCAL_STORAGE_KEY = 'workoutPlan_fase2';
+
+const dayOrder: DayKey[] = ['segunda', 'terca', 'quarta', 'quinta', 'sexta'];
 
 export default function WorkoutDashboard() {
   const [plan, setPlan] = useState<WorkoutPlan | null>(null);
@@ -150,11 +153,11 @@ export default function WorkoutDashboard() {
         <CardContent className="p-4 sm:p-6">
           <Tabs defaultValue="segunda" className="w-full">
             <TabsList className="grid w-full grid-cols-2 sm:grid-cols-5 h-auto">
-                {(Object.keys(plan) as DayKey[]).map((day) => (
+                {dayOrder.map((day) => (
                     <TabsTrigger key={day} value={day}>{dayNames[day]}</TabsTrigger>
                 ))}
             </TabsList>
-            {(Object.keys(plan) as DayKey[]).map((day) => (
+            {dayOrder.map((day) => (
               <TabsContent key={day} value={day} className="mt-6">
                  <h2 className="text-2xl font-bold text-primary mb-4">{plan[day].title}</h2>
                  <div className="space-y-4">
