@@ -134,7 +134,7 @@ export function FocusChart({ plan }: FocusChartProps) {
       <CardContent className="flex-1 pb-0 flex justify-center">
         <ChartContainer
           config={chartConfig}
-          className="aspect-square max-h-[250px]"
+          className="w-[250px] h-[250px]"
         >
           <PieChart>
             <ChartTooltip
