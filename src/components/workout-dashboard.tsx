@@ -109,6 +109,10 @@ export default function WorkoutDashboard() {
      });
   };
 
+  const handlePlanGenerated = (newPlan: WorkoutPlan) => {
+    setPlan(newPlan);
+  };
+
   if (!isClient || !plan) {
     return (
       <div className="max-w-5xl mx-auto p-4 sm:p-6 lg:p-8 space-y-8">
@@ -193,7 +197,7 @@ export default function WorkoutDashboard() {
       </Card>
 
       <div className="mt-8">
-        <AiAdvisorCard plan={plan} />
+        <AiAdvisorCard onPlanGenerated={handlePlanGenerated} />
       </div>
 
       <footer className="mt-8">

@@ -21,11 +21,10 @@ const advisorSchema = z.object({
 type AdvisorFormData = z.infer<typeof advisorSchema>;
 
 interface AiAdvisorCardProps {
-  plan: WorkoutPlan;
+  onPlanGenerated: (newPlan: WorkoutPlan) => void;
 }
 
-export function AiAdvisorCard({ plan }: AiAdvisorCardProps) {
-  const [advice, setAdvice] = useState<string | null>(null);
+export function AiAdvisorCard({ onPlanGenerated }: AiAdvisorCardProps) {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -39,15 +38,14 @@ export function AiAdvisorCard({ plan }: AiAdvisorCardProps) {
   const handleSubmit = async (data: AdvisorFormData) => {
     setIsLoading(true);
     setError(null);
-    setAdvice(null);
     try {
       const result = await getWorkoutAdvice({
-        workoutPlan: JSON.stringify(plan),
         fitnessGoal: data.fitnessGoal,
       });
-      setAdvice(result.advice);
+      onPlanGenerated(result);
+      form.reset();
     } catch (e) {
-      setError("Não foi possível obter a sugestão. Tente novamente.");
+      setError("Não foi possível gerar o treino. Tente novamente.");
       console.error(e);
     } finally {
       setIsLoading(false);
@@ -59,10 +57,10 @@ export function AiAdvisorCard({ plan }: AiAdvisorCardProps) {
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <Wand2 className="text-primary" />
-          Assistente de Treino IA
+          Gerador de Treino com IA
         </CardTitle>
         <CardDescription>
-          Receba dicas personalizadas para otimizar seu treino com base no seu objetivo.
+          Não sabe por onde começar? Descreva seu objetivo principal e a nossa IA criará um plano de treino de 5 dias, completo e personalizado para você.
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -85,10 +83,10 @@ export function AiAdvisorCard({ plan }: AiAdvisorCardProps) {
               {isLoading ? (
                 <>
                   <LoaderCircle className="mr-2 h-4 w-4 animate-spin" />
-                  Analisando...
+                  Gerando seu plano...
                 </>
               ) : (
-                "Obter Sugestão"
+                "Gerar Treino"
               )}
             </Button>
           </form>
@@ -98,15 +96,6 @@ export function AiAdvisorCard({ plan }: AiAdvisorCardProps) {
             <Alert variant="destructive" className="mt-4">
                 <AlertTitle>Erro</AlertTitle>
                 <AlertDescription>{error}</AlertDescription>
-            </Alert>
-        )}
-
-        {advice && (
-            <Alert variant="default" className="mt-4">
-                 <AlertTitle className="font-bold">Sugestão do Assistente</AlertTitle>
-                 <AlertDescription className="prose prose-sm max-w-none text-muted-foreground whitespace-pre-wrap">
-                    {advice}
-                 </AlertDescription>
             </Alert>
         )}
       </CardContent>

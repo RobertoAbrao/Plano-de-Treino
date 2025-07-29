@@ -10,17 +10,33 @@
 
 import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
+import { exerciseList } from '@/lib/exercises';
+
 
 const WorkoutAdvisorInputSchema = z.object({
-  workoutPlan: z
-    .string()
-    .describe('The user workout plan as a JSON string.'),
   fitnessGoal: z.string().describe('The fitness goal of the user.'),
 });
 export type WorkoutAdvisorInput = z.infer<typeof WorkoutAdvisorInputSchema>;
 
+const ExerciseSchema = z.object({
+    id: z.string().describe("A unique identifier for the exercise for that day, like 'seg-1', 'ter-1', etc."),
+    name: z.string().describe('The name of the exercise.'),
+    reps: z.string().describe("The suggested sets and repetitions, like '3x 10-12'."),
+    notes: z.string().describe("A brief, motivational, and helpful note on how to perform the exercise or its benefits. Use HTML bold tags (<strong>) to highlight key terms like 'EVOLUÇÃO!' or 'NOVO!'."),
+    completed: z.boolean().describe('Whether the exercise is completed. Default to false.'),
+});
+
+const DayWorkoutSchema = z.object({
+  title: z.string().describe("The title for the day's workout, like 'Treino A (Empurrar)' or 'Foco em Cardio & Core'."),
+  exercises: z.array(ExerciseSchema).describe("A list of exercises for the day."),
+});
+
 const WorkoutAdvisorOutputSchema = z.object({
-  advice: z.string().describe('Personalized workout advice and exercise modifications.'),
+  segunda: DayWorkoutSchema,
+  terca: DayWorkoutSchema,
+  quarta: DayWorkoutSchema,
+  quinta: DayWorkoutSchema,
+  sexta: DayWorkoutSchema,
 });
 export type WorkoutAdvisorOutput = z.infer<typeof WorkoutAdvisorOutputSchema>;
 
@@ -32,12 +48,22 @@ const prompt = ai.definePrompt({
   name: 'workoutAdvisorPrompt',
   input: {schema: WorkoutAdvisorInputSchema},
   output: {schema: WorkoutAdvisorOutputSchema},
-  prompt: `You are a personal workout advisor. Based on the user's workout plan and fitness goal, provide personalized workout advice and exercise modifications to help them optimize their training and achieve better results.
+  prompt: `You are an expert personal trainer. Your task is to create a complete and balanced 5-day workout plan (Monday to Friday) for a user based on their stated fitness goal.
 
-Workout Plan: {{{workoutPlan}}}
 Fitness Goal: {{{fitnessGoal}}}
 
-Give concrete advice to achieve the fitness goal.`,
+**Instructions:**
+
+1.  **Analyze the Goal:** Carefully consider the user's fitness goal. A plan for "losing weight" should differ from one for "gaining muscle mass" or "improving endurance."
+2.  **Structure the Week:** Create a logical weekly structure. You can use splits like Push/Pull/Legs, Upper/Lower, or Full Body days. Ensure there's a balance between muscle groups and recovery.
+3.  **Select Exercises:** You MUST choose exercises exclusively from the following list. Do not invent exercises.
+    Available Exercises: ${exerciseList.join(', ')}
+4.  **Define Reps/Sets:** Provide appropriate sets and repetitions for each exercise that align with the user's goal (e.g., higher reps for endurance/fat loss, lower reps for strength/hypertrophy).
+5.  **Create Notes:** For each exercise, write a brief, helpful, and motivational note. Explain a key tip for the form, a benefit, or a progression. Use HTML bold tags (<strong>) for emphasis on words like "NOVO!" or "FOCO:".
+6.  **Assign IDs:** Create a unique ID for each exercise following the pattern: day abbreviation + dash + index (e.g., 'seg-1', 'seg-2', 'ter-1').
+7.  **Generate Plan:** Fill out the entire 5-day plan in the required JSON format. Ensure every day (segunda, terca, quarta, quinta, sexta) has a title and a list of exercises.
+
+Return a complete JSON object representing the 5-day workout plan.`,
 });
 
 const workoutAdvisorFlow = ai.defineFlow(
