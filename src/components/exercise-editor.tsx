@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import type { DayKey, Exercise } from "@/types/workout";
+import { exerciseList } from "@/lib/exercises";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -25,6 +26,9 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { ScrollArea } from "@/components/ui/scroll-area";
+
 
 const exerciseSchema = z.object({
   name: z.string().min(1, { message: "O nome é obrigatório." }),
@@ -96,9 +100,22 @@ export function ExerciseEditor({ isOpen, onOpenChange, onSave, editingInfo }: Ex
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Nome do Exercício</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Ex: Supino na Máquina" {...field} />
-                  </FormControl>
+                   <Select onValueChange={field.onChange} defaultValue={field.value}>
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Selecione um exercício" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      <ScrollArea className="h-72">
+                        {exerciseList.map((exercise) => (
+                          <SelectItem key={exercise} value={exercise}>
+                            {exercise}
+                          </SelectItem>
+                        ))}
+                      </ScrollArea>
+                    </SelectContent>
+                  </Select>
                   <FormMessage />
                 </FormItem>
               )}
