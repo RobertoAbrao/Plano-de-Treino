@@ -58,5 +58,5 @@ export const exerciseGifMap: Record<string, string> = {
   "Abdominal Remador": "https://fitnessprogramer.com/wp-content/uploads/2021/02/V-up.gif",
 
   // --- CARDIO ---
-  "Cardio (Corrida, Bicicleta, Elíptico)": "https://fitnessprogramer.com/wp-content/uploads/2021/06/Treadmill.gif",
+  "Cardio (Corrida, Bicicleta, Elíptico)": "https://fitnessprogramer.com/wp-content/uploads/2021/06/Treadmill-.gif",
 };
