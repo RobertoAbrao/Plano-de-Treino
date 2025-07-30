@@ -54,7 +54,7 @@ export const exerciseGifMap: Record<string, string> = {
   "Panturrilha Sentado": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Seated-Calf-Raise.gif",
 
   // --- ABDÔMEN & CORE ---
-  "Prancha Isométrica": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Plank.gif",
+  "Prancha Isométrica": "https://fitnessprogramer.com/wp-content/uploads/2021/02/plank.gif",
   "Abdominal Remador": "https://fitnessprogramer.com/wp-content/uploads/2021/02/V-up.gif",
 
   // --- CARDIO ---
