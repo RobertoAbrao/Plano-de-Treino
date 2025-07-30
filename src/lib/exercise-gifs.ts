@@ -1,45 +1,47 @@
 
 export const exerciseGifMap: Record<string, string> = {
-  "Agachamento Goblet": "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNTZkNjAyMGUzMjJjNjQ4NWQ0N2JjYmZlZWIwZGI0YjM2ZDU1M2YyZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/cM7CBnesAaooXBjT5X/giphy.gif",
+  // Mapeamentos diretos em português para o plano inicial
+  "Supino Reto (Barra ou Halteres)": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Barbell-Bench-Press.gif",
+  "Supino Inclinado (Barra ou Halteres)": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Incline-Dumbbell-Press.gif",
+  "Desenvolvimento na Máquina": "https://fitnessprogramer.com/wp-content/uploads/2021/08/Machine-Shoulder-Press.gif",
+  "Elevação Lateral": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Lateral-Raise.gif",
+  "Puxada Frontal": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Lat-Pulldown.gif",
+  "Remada Curvada": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Barbell-Bent-Over-Row.gif",
+  "Rosca Direta (Barra ou Halteres)": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Barbell-Bicep-Curl.gif",
+  "Rosca Martelo": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Hammer-Curl.gif",
   "Agachamento Livre": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Barbell-Full-Squat.gif",
-  "Avanço com Halteres": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Lunge.gif",
+  "Leg Press": "https://fitnessprogramer.com/wp-content/uploads/2021/03/Leg-Press.gif",
   "Cadeira Extensora": "https://fitnessprogramer.com/wp-content/uploads/2021/03/Leg-Extension.gif",
-  "Cadeira Flexora": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Lying-Leg-Curl.gif",
   "Mesa Flexora": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Lying-Leg-Curl.gif",
+  "Panturrilha em Pé": "https://fitnessprogramer.com/wp-content/uploads/2021/05/Standing-Calf-Raise.gif",
+  "Cardio (Corrida, Bicicleta, Elíptico)": "", // Sem gif específico
+  "Prancha Isométrica": "https://fitnessprogramer.com/wp-content/uploads/2021/04/Plank.gif",
+  "Abdominal Remador": "https://fitnessprogramer.com/wp-content/uploads/2022/10/V-ups.gif",
+  "Levantamento Terra": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Barbell-Deadlift.gif",
+  "Remada Cavalinho": "https://fitnessprogramer.com/wp-content/uploads/2021/02/T-bar-Row.gif",
+  "Elevação Pélvica": "https://fitnessprogramer.com/wp-content/uploads/2021/08/Hip-Thrusters.gif",
+  "Agachamento Goblet": "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNTZkNjAyMGUzMjJjNjQ4NWQ0N2JjYmZlZWIwZGI0YjM2ZDU1M2YyZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/cM7CBnesAaooXBjT5X/giphy.gif",
+  "Avanço com Halteres": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Lunge.gif",
+  "Cadeira Flexora": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Lying-Leg-Curl.gif",
   "Crucifixo (Halteres ou Máquina)": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Fly.gif",
   "Desenvolvimento de Ombros (Barra ou Halteres)": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Shoulder-Press.gif",
-  "Desenvolvimento na Máquina": "https://fitnessprogramer.com/wp-content/uploads/2021/08/Machine-Shoulder-Press.gif",
   "Elevação de Quadril": "https://fitnessprogramer.com/wp-content/uploads/2021/08/Hip-Thrusters.gif",
-  "Elevação Pélvica": "https://fitnessprogramer.com/wp-content/uploads/2021/08/Hip-Thrusters.gif",
-  "Elevação Lateral": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Lateral-Raise.gif",
   "Encolhimento de Ombros": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Shrug.gif",
-  "Leg Press": "https://fitnessprogramer.com/wp-content/uploads/2021/03/Leg-Press.gif",
-  "Levantamento Terra": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Barbell-Deadlift.gif",
-  "Panturrilha em Pé": "https://fitnessprogramer.com/wp-content/uploads/2021/05/Standing-Calf-Raise.gif",
   "Panturrilha Sentado": "https://fitnessprogramer.com/wp-content/uploads/2021/05/Seated-Calf-Raise.gif",
-  "Puxada Frontal": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Lat-Pulldown.gif",
-  "Remada Cavalinho": "https://fitnessprogramer.com/wp-content/uploads/2021/02/T-bar-Row.gif",
-  "Remada Curvada": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Barbell-Bent-Over-Row.gif",
   "Remada na Máquina": "https://fitnessprogramer.com/wp-content/uploads/2021/06/Machine-Low-Row.gif",
   "Remada Serrote": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Row.gif",
   "Rosca Alternada": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Curl.gif",
   "Rosca Concentrada": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Concentration-Curl.gif",
-  "Rosca Direta (Barra ou Halteres)": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Barbell-Bicep-Curl.gif",
-  "Rosca Martelo": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Hammer-Curl.gif",
   "Stiff com Barra": "https://fitnessprogramer.com/wp-content/uploads/2021/05/Stiff-Leg-Deadlift.gif",
   "Supino Declinado": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Decline-Barbell-Bench-Press.gif",
-  "Supino Inclinado (Barra ou Halteres)": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Incline-Dumbbell-Press.gif",
   "Supino na Máquina": "https://fitnessprogramer.com/wp-content/uploads/2021/08/Machine-Chest-Press.gif",
-  "Supino Reto (Barra ou Halteres)": "https://gymvisual.com/img/p/1/7/5/7/4/17574.gif",
   "Tríceps Coice": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Kickback.gif",
   "Tríceps Francês": "https://fitnessprogramer.com/wp-content/uploads/2021/05/Lying-Dumbbell-Triceps-Extension.gif",
   "Tríceps na Polia": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Triceps-Pushdown.gif",
   "Tríceps Testa": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Barbell-Lying-Triceps-Extension.gif",
   "Voador Peitoral": "https://fitnessprogramer.com/wp-content/uploads/2021/08/Pec-Deck-Fly.gif",
-  "Abdominal Remador": "https://fitnessprogramer.com/wp-content/uploads/2022/10/V-ups.gif",
-  "Prancha Isométrica": "https://fitnessprogramer.com/wp-content/uploads/2021/04/Plank.gif",
-  
-  // English keys for broader compatibility
+
+  // Mapeamentos em inglês como fallback
   "barbell bench press": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Barbell-Bench-Press.gif",
   "dumbbell bench press": "https://gymvisual.com/img/p/1/7/5/7/4/17574.gif",
   "incline dumbbell press": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Incline-Dumbbell-Press.gif",
@@ -64,3 +66,5 @@ export const exerciseGifMap: Record<string, string> = {
   "plank": "https://fitnessprogramer.com/wp-content/uploads/2021/04/Plank.gif",
   "crunches": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Crunch.gif"
 };
+
+    
