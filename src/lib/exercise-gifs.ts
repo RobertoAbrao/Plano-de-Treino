@@ -46,7 +46,7 @@ export const exerciseGifMap: Record<string, string> = {
   "Mesa Flexora": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Leg-Curl.gif",
   "Stiff com Barra": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Barbell-Stiff-Leg-Deadlift.gif",
   "Avanço com Halteres": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Lunge.gif",
-  "Elevação Pélvica": "https://fitnessprogramer.com/wp-content/uploads/2021/08/Hip-Thrust.gif",
+  "Elevação Pélvica": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Barbell-Hip-Thrust.gif",
   "Agachamento Goblet": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Goblet-Squat.gif",
 
   // --- PANTURRILHAS ---
