@@ -55,7 +55,7 @@ export const exerciseGifMap: Record<string, string> = {
 
   // --- ABDÔMEN & CORE ---
   "Prancha Isométrica": "https://fitnessprogramer.com/wp-content/uploads/2021/02/plank.gif",
-  "Abdominal Remador": "https://fitnessprogramer.com/wp-content/uploads/2021/02/V-up.gif",
+  "Abdominal Remador": "https://fitnessprogramer.com/wp-content/uploads/2021/05/Crunch-With-Leg-Raise.gif",
 
   // --- CARDIO ---
   "Cardio (Corrida, Bicicleta, Elíptico)": "https://fitnessprogramer.com/wp-content/uploads/2021/06/Treadmill-.gif",
