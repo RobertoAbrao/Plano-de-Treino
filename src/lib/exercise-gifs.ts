@@ -19,7 +19,7 @@ export const exerciseGifMap: Record<string, string> = {
 
   // --- OMBROS ---
   "Desenvolvimento de Ombros (Barra ou Halteres)": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Shoulder-Press.gif",
-  "Desenvolvimento na Máquina": "https://fitnessprogramer.com/wp-content/uploads/2021/08/Machine-Shoulder-Press.gif",
+  "Desenvolvimento na Máquina": "https://fitnessprogramer.com/wp-content/uploads/2021/04/Lever-Shoulder-Press.gif",
   "Elevação Lateral": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Lateral-Raise.gif",
   "Remada Alta": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Barbell-Upright-Row.gif",
   "Encolhimento de Ombros": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Shrug.gif",
