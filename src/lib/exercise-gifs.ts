@@ -7,8 +7,8 @@ export const exerciseGifMap: Record<string, string> = {
   "Elevação Lateral": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Lateral-Raise.gif",
   "Puxada Frontal": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Lat-Pulldown.gif",
   "Remada Curvada": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Barbell-Bent-Over-Row.gif",
-  "Rosca Direta (Barra ou Halteres)": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Curl.gif",
-  "Rosca Martelo": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Hammer-Curl.gif",
+  "Rosca Direta (Barra ou Halteres)": "https://fitnessprogramer.com/exercise/double-arm-dumbbell-curl/",
+  "Rosca Martelo": "https://fitnessprogramer.com/exercise/hammer-curl/?pw=33440",
   "Agachamento Livre": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Barbell-Full-Squat.gif",
   "Leg Press": "https://fitnessprogramer.com/wp-content/uploads/2021/03/Leg-Press.gif",
   "Cadeira Extensora": "https://fitnessprogramer.com/wp-content/uploads/2021/03/Leg-Extension.gif",
@@ -65,5 +65,3 @@ export const exerciseGifMap: Record<string, string> = {
   "plank": "https://fitnessprogramer.com/wp-content/uploads/2021/04/Plank.gif",
   "crunches": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Crunch.gif"
 };
-
-    
