@@ -50,7 +50,7 @@ export const exerciseGifMap: Record<string, string> = {
   "Agachamento Goblet": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Goblet-Squat.gif",
 
   // --- PANTURRILHAS ---
-  "Panturrilha em Pé": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Standing-Calf-Raise.gif",
+  "Panturrilha em Pé": "https://fitnessprogramer.com/wp-content/uploads/2021/06/Standing-Calf-Raise.gif",
   "Panturrilha Sentado": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Seated-Calf-Raise.gif",
 
   // --- ABDÔMEN & CORE ---
