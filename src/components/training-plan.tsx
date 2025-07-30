@@ -2,10 +2,11 @@
 "use client";
 
 import { useState } from "react";
-import { Pencil, PlusCircle, Trash2, Timer } from "lucide-react";
+import { Pencil, PlusCircle, Trash2, Timer, Video } from "lucide-react";
 import { useWorkoutPlan } from "@/contexts/workout-plan-context";
 import type { DayKey, Exercise } from "@/types/workout";
 import { dayNames } from "@/types/workout";
+import { exerciseGifMap } from "@/lib/exercise-gifs";
 
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -14,6 +15,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Skeleton } from "@/components/ui/skeleton";
 import { ExerciseEditor } from "@/components/exercise-editor";
 import { TimerModal } from "@/components/timer-modal";
+import { GifViewer } from "@/components/gif-viewer";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import {
   Select,
@@ -52,6 +54,11 @@ export function TrainingPlan() {
   const [isEditorOpen, setEditorOpen] = useState(false);
   const [editingInfo, setEditingInfo] = useState<{ day: DayKey; exercise: Exercise | null } | null>(null);
   const [isTimerOpen, setTimerOpen] = useState(false);
+  const [gifViewerState, setGifViewerState] = useState<{ isOpen: boolean; exerciseName: string; gifUrl: string | null }>({
+    isOpen: false,
+    exerciseName: "",
+    gifUrl: null
+  });
 
   const handleToggleExercise = (day: DayKey, exerciseId: string, completed: boolean) => {
     const exercise = plan?.[day]?.exercises.find(ex => ex.id === exerciseId);
@@ -71,6 +78,11 @@ export function TrainingPlan() {
     } else { // Adding new
         addExercise(day, exerciseData);
     }
+  };
+
+  const handleOpenGifViewer = (exerciseName: string) => {
+    const gifUrl = exerciseGifMap[exerciseName] || null;
+    setGifViewerState({ isOpen: true, exerciseName, gifUrl });
   };
 
 
@@ -174,6 +186,17 @@ export function TrainingPlan() {
                           </label>
                         </div>
                         <div className="flex flex-col sm:flex-row gap-1 -mr-1">
+                          {exerciseGifMap[exercise.name] && (
+                             <Button
+                                variant="ghost"
+                                size="icon"
+                                className="h-8 w-8"
+                                onClick={() => handleOpenGifViewer(exercise.name)}
+                              >
+                                <Video className="h-4 w-4" />
+                                <span className="sr-only">Ver Execução</span>
+                              </Button>
+                          )}
                           <Button
                             variant="ghost"
                             size="icon"
@@ -230,6 +253,13 @@ export function TrainingPlan() {
       />
 
       <TimerModal isOpen={isTimerOpen} onOpenChange={setTimerOpen} />
+
+      <GifViewer
+        isOpen={gifViewerState.isOpen}
+        onOpenChange={(isOpen) => setGifViewerState(prev => ({ ...prev, isOpen }))}
+        exerciseName={gifViewerState.exerciseName}
+        gifUrl={gifViewerState.gifUrl}
+      />
     </div>
   );
 }
