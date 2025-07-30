@@ -43,7 +43,7 @@ export const exerciseGifMap: Record<string, string> = {
   "Leg Press": "https://fitnessprogramer.com/wp-content/uploads/2015/11/Leg-Press.gif",
   "Cadeira Extensora": "https://fitnessprogramer.com/wp-content/uploads/2021/02/LEG-EXTENSION.gif",
   "Cadeira Flexora": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Seated-Leg-Curl.gif",
-  "Mesa Flexora": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Lying-Leg-Curl.gif",
+  "Mesa Flexora": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Leg-Curl.gif",
   "Stiff com Barra": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Barbell-Stiff-Leg-Deadlift.gif",
   "Avanço com Halteres": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Lunge.gif",
   "Elevação Pélvica": "https://fitnessprogramer.com/wp-content/uploads/2021/08/Hip-Thrust.gif",
