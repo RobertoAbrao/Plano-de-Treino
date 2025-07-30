@@ -8,7 +8,6 @@ import {
   DialogTitle,
   DialogDescription,
 } from "@/components/ui/dialog";
-import { Skeleton } from "./ui/skeleton";
 
 interface GifViewerProps {
   isOpen: boolean;
