@@ -40,7 +40,7 @@ export const exerciseGifMap: Record<string, string> = {
 
   // --- PERNAS ---
   "Agachamento Livre": "https://fitnessprogramer.com/wp-content/uploads/2021/05/bodyweight-squat-full-version.gif",
-  "Leg Press": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Leg-Press.gif",
+  "Leg Press": "https://fitnessprogramer.com/wp-content/uploads/2015/11/Leg-Press.gif",
   "Cadeira Extensora": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Leg-Extension.gif",
   "Cadeira Flexora": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Seated-Leg-Curl.gif",
   "Mesa Flexora": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Lying-Leg-Curl.gif",
