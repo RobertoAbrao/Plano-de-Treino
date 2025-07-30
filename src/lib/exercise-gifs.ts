@@ -39,7 +39,7 @@ export const exerciseGifMap: Record<string, string> = {
   "Tríceps Coice": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Kickback.gif",
 
   // --- PERNAS ---
-  "Agachamento Livre": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Barbell-Squat.gif",
+  "Agachamento Livre": "https://fitnessprogramer.com/wp-content/uploads/2021/05/bodyweight-squat-full-version.gif",
   "Leg Press": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Leg-Press.gif",
   "Cadeira Extensora": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Leg-Extension.gif",
   "Cadeira Flexora": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Seated-Leg-Curl.gif",
