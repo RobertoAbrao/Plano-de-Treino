@@ -11,7 +11,7 @@ export const exerciseGifMap: Record<string, string> = {
   // --- COSTAS ---
   "Puxada Frontal": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Lat-Pulldown.gif",
   "Remada Curvada": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Barbell-Bent-Over-Row.gif",
-  "Remada Cavalinho": "https://fitnessprogramer.com/wp-content/uploads/2021/02/T-Bar-Row.gif",
+  "Remada Cavalinho": "https://fitnessprogramer.com/wp-content/uploads/2021/08/Lever-Reverse-T-Bar-Row.gif",
   "Remada Serrote": "https://fitnessprogramer.com/wp-content/uploads/2021/02/One-Arm-Dumbbell-Row.gif",
   "Levantamento Terra": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Barbell-Deadlift.gif",
   "Puxada Alta": "https://fitnessprogramer.com/wp-content/uploads/2022/02/Standing-Lat-Pulldown.gif",
