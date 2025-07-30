@@ -12,10 +12,10 @@ export const exerciseGifMap: Record<string, string> = {
   "Puxada Frontal": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Lat-Pulldown.gif",
   "Remada Curvada": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Barbell-Bent-Over-Row.gif",
   "Remada Cavalinho": "https://fitnessprogramer.com/wp-content/uploads/2021/08/Lever-Reverse-T-Bar-Row.gif",
-  "Remada Serrote": "https://fitnessprogramer.com/wp-content/uploads/2021/02/One-Arm-Dumbbell-Row.gif",
+  "Remada Serrote": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Row.gif",
   "Levantamento Terra": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Barbell-Deadlift.gif",
-  "Puxada Alta": "https://fitnessprogramer.com/wp-content/uploads/2022/02/Standing-Lat-Pulldown.gif",
-  "Remada na Máquina": "https://fitnessprogramer.com/wp-content/uploads/2021/06/Seated-Cable-Row.gif",
+  "Puxada Alta": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Lat-Pulldown.gif",
+  "Remada na Máquina": "https://fitnessprogramer.com/wp-content/uploads/2021/06/Seated-Cable-Rope-Row.gif",
 
   // --- OMBROS ---
   "Desenvolvimento de Ombros (Barra ou Halteres)": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Shoulder-Press.gif",
@@ -33,7 +33,7 @@ export const exerciseGifMap: Record<string, string> = {
   "Rosca 21": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Barbell-Curl.gif", 
 
   // --- TRÍCEPS ---
-  "Tríceps na Polia": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Triceps-Pushdown.gif",
+  "Tríceps na Polia": "https://fitnessprogramer.com/wp-content/uploads/2022/11/One-arm-triceps-pushdown.gif",
   "Tríceps Testa": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Lying-Triceps-Press.gif",
   "Tríceps Francês": "https://fitnessprogramer.com/wp-content/uploads/2022/02/Seated-Dumbbell-Triceps-Extension.gif",
   "Tríceps Coice": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Kickback.gif",
@@ -47,11 +47,11 @@ export const exerciseGifMap: Record<string, string> = {
   "Stiff com Barra": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Barbell-Stiff-Leg-Deadlift.gif",
   "Avanço com Halteres": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Lunge.gif",
   "Elevação Pélvica": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Barbell-Hip-Thrust.gif",
-  "Agachamento Goblet": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Goblet-Squat.gif",
+  "Agachamento Goblet": "https://fitnessprogramer.com/wp-content/uploads/2025/07/Heel-Elevated-Goblet-Squat.gif",
 
   // --- PANTURRILHAS ---
   "Panturrilha em Pé": "https://fitnessprogramer.com/wp-content/uploads/2021/06/Standing-Calf-Raise.gif",
-  "Panturrilha Sentado": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Seated-Calf-Raise.gif",
+  "Panturrilha Sentado": "https://fitnessprogramer.com/wp-content/uploads/2021/06/Lever-Seated-Calf-Raise.gif",
 
   // --- ABDÔMEN & CORE ---
   "Prancha Isométrica": "https://fitnessprogramer.com/wp-content/uploads/2021/02/plank.gif",
