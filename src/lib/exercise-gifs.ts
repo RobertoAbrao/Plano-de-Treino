@@ -3,7 +3,7 @@ export const exerciseGifMap: Record<string, string> = {
   // Mapeamentos diretos em português para o plano inicial
   "Supino Reto (Barra ou Halteres)": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Barbell-Bench-Press.gif",
   "Supino Inclinado (Barra ou Halteres)": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Incline-Dumbbell-Press.gif",
-  "Desenvolvimento na Máquina": "https://fitnessprogramer.com/wp-content/uploads/2021/08/Machine-Shoulder-Press.gif",
+  "Desenvolvimento na Máquina": "https://gymvisual.com/img/p/1/7/4/5/8/17458.gif",
   "Elevação Lateral": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Lateral-Raise.gif",
   "Puxada Frontal": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Lat-Pulldown.gif",
   "Remada Curvada": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Barbell-Bent-Over-Row.gif",
